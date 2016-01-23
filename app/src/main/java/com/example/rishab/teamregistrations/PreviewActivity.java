@@ -12,6 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -91,10 +95,12 @@ public class PreviewActivity extends ActionBarActivity {
         final String text5= text.getText().toString();
         text=(TextView) findViewById(R.id.ent_no3);
         final String text6= text.getText().toString();
+        text=(TextView) findViewById(R.id.team_name);
+        final String team=text.getText().toString();
         System.out.print(text1 + " " + text2 + " " + text3 + " " + text4 + " " + text5 + " " + text6 + " ");
 
         //making a string request to register the user data
-        StringRequest stringRequest=new StringRequest(DownloadManager.Request.Method.POST,URL, new Response.Listener<String>(){
+        StringRequest stringRequest=new StringRequest(com.android.volley.Request.Method.POST,URL, new Response.Listener<String>(){
             @Override
             public void onResponse(String string){
                 //on getting the response start an activity that shows the message recieved
@@ -140,7 +146,7 @@ public class PreviewActivity extends ActionBarActivity {
                 // the server
 
                 Map<String,String> req=new HashMap<String, String>();
-                req.put("teamname" , "Team_Rockets");
+                req.put("teamname" , team);
                 req.put("entry1" , text2);
                 req.put("entry2" , text4);
                 req.put("entry3" , text6);

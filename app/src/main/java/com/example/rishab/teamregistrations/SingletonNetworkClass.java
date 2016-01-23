@@ -5,12 +5,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
-import android.content.Context;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
-
 /**
  * Created by Rishab on 17-01-2016.
  * This file creates a global request queue that has life same as that of app
@@ -45,4 +39,3 @@ public class SingletonNetworkClass {
     }
 
 }
-
