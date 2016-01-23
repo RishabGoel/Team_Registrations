@@ -1,0 +1,218 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:weightSum="1"
+    android:gravity="center|center_vertical|center_horizontal"
+    android:background="#fff">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/title"
+                android:text="CREATE TEAM"
+                android:textColor="#fff"
+                android:textSize="32dp"
+                android:layout_margin="20dp"
+                android:onClick="focus" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_gravity="center"
+                android:layout_marginTop="35dp">
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/team_name"
+                    android:textColor="#000"
+                    android:gravity="center"
+                    android:hint="Enter Team Name"
+                    android:textColorHint="#757575"
+                    android:textSize="30dp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal"
+                android:weightSum="1"
+                android:layout_marginTop="40dp">
+
+
+
+
+                <LinearLayout
+
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.33">
+
+
+                    <ImageButton
+                        android:layout_width="82dp"
+                        android:layout_height="92dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/user3"
+                        android:id="@+id/member_1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Member - 1"
+                        android:id="@+id/user1"
+                        android:maxLength="8"
+                        android:ellipsize="end"
+                        android:singleLine="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Entry No. - 1"
+                        android:id="@+id/ent_no1"
+                        android:ellipsize="end"
+                        android:maxLength="8"
+                        android:singleLine="true" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.33">
+
+
+                    <ImageButton
+                        android:layout_width="82dp"
+                        android:layout_height="92dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/user1"
+                        android:id="@+id/member_2" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Member - 1"
+                        android:id="@+id/user2"
+                        android:ellipsize="end"
+                        android:maxLength="8"
+                        android:singleLine="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Entry No. - 1"
+                        android:id="@+id/ent_no2"
+                        android:ellipsize="end"
+                        android:maxLength="8"
+                        android:singleLine="true" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.33">
+
+
+                    <ImageButton
+                        android:layout_width="82dp"
+                        android:layout_height="92dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/user2"
+                        android:id="@+id/member_3" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Member - 1"
+                        android:id="@+id/user3"
+                        android:ellipsize="end"
+                        android:maxLength="8"
+                        android:singleLine="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:text="Entry No. - 1"
+                        android:id="@+id/ent_no3"
+                        android:ellipsize="end"
+                        android:maxLength="8"
+                        android:singleLine="true" />
+
+
+                </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="40dp">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border"
+                    android:width="140dp"
+                    android:textColor="#ffffff"
+                    android:onClick="clearScreen"
+                    android:text="Clear"
+                    android:textSize="20dp" />
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SUBMIT"
+                    android:id="@+id/button5"
+                    android:background="@drawable/border"
+                    android:width="140dp"
+                    android:textColor="#ffffff"
+                    android:onClick="send"
+                    android:layout_marginLeft="30dp"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
