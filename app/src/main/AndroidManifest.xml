@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.rishab.teamregistrations" >
+    package="com.example.rishab.teamregistrations">
+    <!--getting the permissions for internet and network access-->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/launcher_icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,12 +21,10 @@
         </activity>
         <activity
             android:name=".DataEntryPopup"
-            android:label="@string/title_activity_data_entry_popup" >
-        </activity>
+            android:label="@string/title_activity_data_entry_popup"></activity>
         <activity
             android:name=".PreviewActivity"
-            android:label="@string/title_activity_preview" >
-        </activity>
+            android:label="@string/title_activity_preview"></activity>
     </application>
 
 </manifest>

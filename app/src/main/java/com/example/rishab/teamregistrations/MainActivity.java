@@ -41,8 +41,8 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //initialize the team detals arrary
-        for (int i=0;i<team_details.length;i++){
-            team_details[i]="";
+        for (int i = 0; i < team_details.length; i++) {
+            team_details[i] = "";
         }
         EditText editText = (EditText) findViewById(R.id.team_name);  //
         editText.setSingleLine(false);
@@ -83,7 +83,6 @@ public class MainActivity extends ActionBarActivity {
         });
 
 
-
     }
 
     @Override
@@ -108,20 +107,21 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
     //send function sends the team data to the preview  activity so that the users can confirm
     //their details
-    public void send(View view){
-        EditText editText=(EditText) findViewById(R.id.team_name);
-        String team=editText.getText().toString();
+    public void send(View view) {
+        EditText editText = (EditText) findViewById(R.id.team_name);
+        String team = editText.getText().toString();
         int no_data = 0;  //checks if the result activity ended because of back click or exit
-        for (int i=0;i<team_details.length;i++){
-            if (team_details[i].length()==0){
-                no_data=1;
+        for (int i = 0; i < team_details.length; i++) {
+            if (team_details[i].length() == 0) {
+                no_data = 1;
                 break;
             }
         }
         //check if the user has filled all the field
-        if (no_data==0) {
+        if (no_data == 0) {
             Intent preview_intent = new Intent(this, PreviewActivity.class);
             preview_intent.putExtra("team_name", team);
             preview_intent.putExtra("user1", team_details[0]);
@@ -131,8 +131,7 @@ public class MainActivity extends ActionBarActivity {
             preview_intent.putExtra("user3", team_details[4]);
             preview_intent.putExtra("ent_no3", team_details[5]);
             startActivity(preview_intent);
-        }
-        else {
+        } else {
             //alerting the user to fill all the details
             AlertDialog alertDialog = new AlertDialog.Builder(
                     MainActivity.this).create();
@@ -160,64 +159,63 @@ public class MainActivity extends ActionBarActivity {
     }
 
     @Override
-    public void onActivityResult(int reqcode, int rescode, Intent data){
+    public void onActivityResult(int reqcode, int rescode, Intent data) {
         //got the results back
         //map for reqcode(request code) to user - mentioned above while starting result activity
         super.onActivityResult(reqcode, rescode, data);
-        if (data.getStringExtra("back_triggered").matches("0")){
-            if (reqcode==1) {
+        if (data.getStringExtra("back_triggered").matches("0")) {
+            if (reqcode == 1) {
                 //update the details of 1st user/member
                 team_details[0] = data.getStringExtra("name");
                 team_details[1] = data.getStringExtra("ent_no");
-                TextView textView=(TextView) findViewById(R.id.user1);
+                TextView textView = (TextView) findViewById(R.id.user1);
                 textView.setText(team_details[0]);
-                textView=(TextView) findViewById(R.id.ent_no1);
+                textView = (TextView) findViewById(R.id.ent_no1);
                 textView.setText(team_details[1]);
-            }
-            else if (reqcode==2) {
+            } else if (reqcode == 2) {
                 //update the details for 2nd user/member
                 team_details[2] = data.getStringExtra("name");
                 team_details[3] = data.getStringExtra("ent_no");
-                TextView textView=(TextView) findViewById(R.id.user2);
+                TextView textView = (TextView) findViewById(R.id.user2);
                 textView.setText(team_details[2]);
-                textView=(TextView) findViewById(R.id.ent_no2);
+                textView = (TextView) findViewById(R.id.ent_no2);
                 textView.setText(team_details[3]);
-            }
-            else {
+            } else {
                 //update the details for 3rd user/member
                 team_details[4] = data.getStringExtra("name");
                 team_details[5] = data.getStringExtra("ent_no");
-                TextView textView=(TextView) findViewById(R.id.user3);
+                TextView textView = (TextView) findViewById(R.id.user3);
                 textView.setText(team_details[4]);
-                textView=(TextView) findViewById(R.id.ent_no3);
+                textView = (TextView) findViewById(R.id.ent_no3);
                 textView.setText(team_details[5]);
             }
         }
     }
 
     //the following function resets all the fields
-    public void clearScreen(View view){
-        TextView textView=(TextView) findViewById(R.id.user1);
+    public void clearScreen(View view) {
+        TextView textView = (TextView) findViewById(R.id.user1);
         textView.setText("Menber - 1");
-        textView=(TextView) findViewById(R.id.ent_no1);
+        textView = (TextView) findViewById(R.id.ent_no1);
         textView.setText("Entry No. - 1");
-        textView=(TextView) findViewById(R.id.user2);
+        textView = (TextView) findViewById(R.id.user2);
         textView.setText("Menber - 2");
-        textView=(TextView) findViewById(R.id.ent_no2);
+        textView = (TextView) findViewById(R.id.ent_no2);
         textView.setText("Entry No. - 2");
-        textView=(TextView) findViewById(R.id.user3);
+        textView = (TextView) findViewById(R.id.user3);
         textView.setText("Menber - 3");
-        textView=(TextView) findViewById(R.id.ent_no3);
+        textView = (TextView) findViewById(R.id.ent_no3);
         textView.setText("Entry No. - 3");
-        EditText editText=(EditText)findViewById(R.id.team_name);
+        EditText editText = (EditText) findViewById(R.id.team_name);
         editText.setText("");
         editText.setHint("Enter Team Name");
-        for (int index=0;index<team_details.length;index++){
+        for (int index = 0; index < team_details.length; index++) {
             team_details[index] = "";
         }
     }
-    public void focus(View v){
-        EditText editText=(EditText)findViewById(R.id.team_name);
+
+    public void focus(View v) {
+        EditText editText = (EditText) findViewById(R.id.team_name);
         editText.setEnabled(true);
         editText.requestFocus();
     }

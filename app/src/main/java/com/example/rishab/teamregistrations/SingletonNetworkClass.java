@@ -1,4 +1,5 @@
 package com.example.rishab.teamregistrations;
+
 import android.content.Context;
 
 import com.android.volley.Request;
@@ -14,27 +15,30 @@ public class SingletonNetworkClass {
     private static SingletonNetworkClass single_netwrk;
     private RequestQueue requestQueue;
     private static Context mcontext;
+
     //setting the context
-    public SingletonNetworkClass(Context context){
+    public SingletonNetworkClass(Context context) {
         mcontext = context;
-        requestQueue=getRequestQueue();
+        requestQueue = getRequestQueue();
     }
 
-    public static synchronized SingletonNetworkClass getInstance(Context context){
-        if (single_netwrk==null){
-            single_netwrk=new SingletonNetworkClass(context);
+    public static synchronized SingletonNetworkClass getInstance(Context context) {
+        if (single_netwrk == null) {
+            single_netwrk = new SingletonNetworkClass(context);
         }
         return single_netwrk;
     }
+
     //get the request queue
-    public RequestQueue getRequestQueue(){
-        if (requestQueue==null){
-            requestQueue= Volley.newRequestQueue(mcontext.getApplicationContext());
+    public RequestQueue getRequestQueue() {
+        if (requestQueue == null) {
+            requestQueue = Volley.newRequestQueue(mcontext.getApplicationContext());
         }
         return requestQueue;
     }
+
     //add a generic request to the the queue
-    public <T> void addToRequestQueue(Request<T> req){
+    public <T> void addToRequestQueue(Request<T> req) {
         getRequestQueue().add(req);
     }
 

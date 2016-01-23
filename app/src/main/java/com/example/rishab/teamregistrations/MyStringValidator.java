@@ -4,8 +4,8 @@ package com.example.rishab.teamregistrations;
  * Created by Rishab on 23-01-2016.
  */
 
-public class MyStringValidator  {       //  Class containing the funciton to validate name and entry number
-    public static String validate(String name,String entry_no) {    //  function to validate name and entry number
+public class MyStringValidator {       //  Class containing the funciton to validate name and entry number
+    public static String validate(String name, String entry_no) {    //  function to validate name and entry number
 
         String error_name_string = "", error_entry_no_string = "", name_temp = "";
 
@@ -13,7 +13,7 @@ public class MyStringValidator  {       //  Class containing the funciton to val
         int length2 = entry_no.length();
 
         for (int i = 0; i < length1; i++) { //  function to search for invalid symbols in the name
-            if ((name.charAt(i) <= 'Z' && name.charAt(i) >= 'A') || (name.charAt(i) <= 'z' && name.charAt(i) >= 'a') || (name.charAt(i) == ' ') || name.charAt(i) == '.'||name.charAt(i)=='\'')
+            if ((name.charAt(i) <= 'Z' && name.charAt(i) >= 'A') || (name.charAt(i) <= 'z' && name.charAt(i) >= 'a') || (name.charAt(i) == ' ') || name.charAt(i) == '.' || name.charAt(i) == '\'')
                 ;
             else
                 error_name_string = "Invalid Symbol in the name\n";
@@ -101,9 +101,7 @@ public class MyStringValidator  {       //  Class containing the funciton to val
 
             if (error_name_string == "") return error_entry_no_string;
             else return error_name_string + "\n" + error_entry_no_string;
-        }
-
-        catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             return "Data not Entered";
         }
     }
