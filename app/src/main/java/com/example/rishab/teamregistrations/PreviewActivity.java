@@ -2,8 +2,11 @@ package com.example.rishab.teamregistrations;
 
 import android.app.AlertDialog;
 import android.app.DownloadManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -79,91 +83,95 @@ public class PreviewActivity extends ActionBarActivity {
     }
 
     public void send_confirmation(View view) {
-        //url to register team details to
-        String URL = "http://agni.iitd.ernet.in/cop290/assign0/register/";
-        //setting the variable to get text from the text field
-        TextView text = (TextView) findViewById(R.id.user1);
-        Log.e("enter confirmation", "true");
-        //following variables i.e. text,text1 etc are the required fields to be sent to the server
-        final String text1 = text.getText().toString();
-        text = (TextView) findViewById(R.id.ent_no1);
-        final String text2 = text.getText().toString();
-        text = (TextView) findViewById(R.id.user2);
-        final String text3 = text.getText().toString();
-        text = (TextView) findViewById(R.id.ent_no2);
-        final String text4 = text.getText().toString();
-        text = (TextView) findViewById(R.id.user3);
-        final String text5 = text.getText().toString();
-        text = (TextView) findViewById(R.id.ent_no3);
-        final String text6 = text.getText().toString();
-        text = (TextView) findViewById(R.id.team_name);
-        final String team = text.getText().toString();
-        System.out.print(text1 + " " + text2 + " " + text3 + " " + text4 + " " + text5 + " " + text6 + " ");
+        if (isNetworkAvailable()) {
+            //url to register team details to
+            String URL = "http://agni.iitd.ernet.in/cop290/assign0/register/";
+            //setting the variable to get text from the text field
+            TextView text = (TextView) findViewById(R.id.user1);
+            Log.e("enter confirmation", "true");
+            //following variables i.e. text,text1 etc are the required fields to be sent to the server
+            final String text1 = text.getText().toString();
+            text = (TextView) findViewById(R.id.ent_no1);
+            final String text2 = text.getText().toString();
+            text = (TextView) findViewById(R.id.user2);
+            final String text3 = text.getText().toString();
+            text = (TextView) findViewById(R.id.ent_no2);
+            final String text4 = text.getText().toString();
+            text = (TextView) findViewById(R.id.user3);
+            final String text5 = text.getText().toString();
+            text = (TextView) findViewById(R.id.ent_no3);
+            final String text6 = text.getText().toString();
+            text = (TextView) findViewById(R.id.team_name);
+            final String team = text.getText().toString();
+            System.out.print(text1 + " " + text2 + " " + text3 + " " + text4 + " " + text5 + " " + text6 + " ");
 
-        //making a string request to register the user data
-        StringRequest stringRequest = new StringRequest(com.android.volley.Request.Method.POST, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String string) {
-                //on getting the response start an activity that shows the message recieved
-                // from the server given
-                AlertDialog alertDialog = new AlertDialog.Builder(
-                        PreviewActivity.this).create();
+            //making a string request to register the user data
+            StringRequest stringRequest = new StringRequest(com.android.volley.Request.Method.POST, URL, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String string) {
+                    //on getting the response start an activity that shows the message recieved
+                    // from the server given
+                    AlertDialog alertDialog = new AlertDialog.Builder(
+                            PreviewActivity.this).create();
 
-                // Setting Dialog Title
-                alertDialog.setTitle("Response");
+                    // Setting Dialog Title
+                    alertDialog.setTitle("Response");
 
-                // Setting Dialog Message
-                alertDialog.setMessage(handle_response(string));
-
-
-                // Setting OK Button
-                alertDialog.setButton("Register Another Team", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Write your code here to execute after dialog closed
-                        Intent intent = new Intent(PreviewActivity.this, MainActivity.class);
-                        startActivity(intent);
-
-                    }
-                });
-
-                // Showing Alert Message
-                alertDialog.show();
-//                Intent confirmation_intent = new Intent(PreviewActivity.this, ConfirmationActivity.class);
-//                confirmation_intent.putExtra("response",handle_response(string));
-//                startActivity(confirmation_intent);
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError string) {
-                System.out.print(string);
-
-            }
-
-            ;
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                //this function converts the the entered data into the format to be sent to
-                // the server
-
-                Map<String, String> req = new HashMap<String, String>();
-                req.put("teamname", team);
-                req.put("entry1", text2);
-                req.put("entry2", text4);
-                req.put("entry3", text6);
-                req.put("name1", text1);
-                req.put("name2", text3);
-                req.put("name3", text5);
-                return req;
-            }
-        };
-        //the following is the global request queue to prevent construction of
-        // request queue again and again
-        SingletonNetworkClass.getInstance(this).addToRequestQueue(stringRequest);
-//        queue.add(stringRequest);
+                    // Setting Dialog Message
+                    alertDialog.setMessage(handle_response(string));
 
 
+                    // Setting OK Button
+                    alertDialog.setButton("Register Another Team", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Write your code here to execute after dialog closed
+                            Intent intent = new Intent(PreviewActivity.this, MainActivity.class);
+                            startActivity(intent);
+
+                        }
+                    });
+
+                    // Showing Alert Message
+                    alertDialog.show();
+                    //                Intent confirmation_intent = new Intent(PreviewActivity.this, ConfirmationActivity.class);
+                    //                confirmation_intent.putExtra("response",handle_response(string));
+                    //                startActivity(confirmation_intent);
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError string) {
+                    System.out.print(string);
+
+                }
+
+                ;
+            }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    //this function converts the the entered data into the format to be sent to
+                    // the server
+
+                    Map<String, String> req = new HashMap<String, String>();
+                    req.put("teamname", team);
+                    req.put("entry1", text2);
+                    req.put("entry2", text4);
+                    req.put("entry3", text6);
+                    req.put("name1", text1);
+                    req.put("name2", text3);
+                    req.put("name3", text5);
+                    return req;
+                }
+            };
+            //the following is the global request queue to prevent construction of
+            // request queue again and again
+            SingletonNetworkClass.getInstance(this).addToRequestQueue(stringRequest);
+            //        queue.add(stringRequest);
+
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "Network Not Available or Internet Connection Not Available", Toast.LENGTH_SHORT).show();
+        }
     }
 
     //the following function finishes the activity and takes back to edit the entered details
@@ -189,6 +197,12 @@ public class PreviewActivity extends ActionBarActivity {
             String a = "";
         }
         return "Unknown Response";
+    }
+    public boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager)this.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager
+                .getActiveNetworkInfo();
+        return activeNetworkInfo != null;
     }
 
 }
